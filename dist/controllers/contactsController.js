@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createContact = exports.getContactById = exports.getAllContacts = void 0;
+exports.deleteContact = exports.createContact = exports.getContactById = exports.getAllContacts = void 0;
 var contactsModel_1 = require("../models/contactsModel");
 var getAllContacts = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var contacts;
@@ -94,3 +94,23 @@ var createContact = function (req, res) { return __awaiter(void 0, void 0, void 
     });
 }); };
 exports.createContact = createContact;
+var deleteContact = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var contact;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.findById(req.params.id)];
+            case 1:
+                contact = _a.sent();
+                if (!contact) {
+                    res.status(404);
+                    throw new Error('Contact not found');
+                }
+                return [4 /*yield*/, contact.remove()];
+            case 2:
+                _a.sent();
+                res.send('Contact removed');
+                return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteContact = deleteContact;

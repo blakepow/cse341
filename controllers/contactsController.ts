@@ -35,3 +35,16 @@ export const createContact = async (req: Request, res: Response) => {
     await contact.save()
     res.send(contact)
 }
+
+export const deleteContact = async (req: Request, res: Response) => {
+    const contact = await ContactModel.findById(req.params.id);
+
+    if (!contact) {
+        res.status(404);
+        throw new Error('Contact not found');
+    }
+
+    await contact.remove();
+    res.send('Contact removed');
+
+}
