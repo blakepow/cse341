@@ -19,6 +19,12 @@ export const getContactById = async (req: Request, res: Response) => {
 }
 
 export const createContact = async (req: Request, res: Response) => {
+    const contactExists = await ContactModel.findOne({email: req.body.email});
+
+    if (contactExists) {
+        return res.status(400).send('Contact already exists');
+    }
+
     const contact = new ContactModel({
         firstName: req.body.firstName,
         lastName: req.body.lastName,

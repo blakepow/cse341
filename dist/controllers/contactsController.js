@@ -69,10 +69,15 @@ var getContactById = function (req, res) { return __awaiter(void 0, void 0, void
 }); };
 exports.getContactById = getContactById;
 var createContact = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var contact;
+    var contactExists, contact;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
+            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.findOne({ email: req.body.email })];
+            case 1:
+                contactExists = _a.sent();
+                if (contactExists) {
+                    return [2 /*return*/, res.status(400).send('Contact already exists')];
+                }
                 contact = new contactsModel_1.ContactModel({
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
@@ -81,7 +86,7 @@ var createContact = function (req, res) { return __awaiter(void 0, void 0, void 
                     birthday: req.body.birthday
                 });
                 return [4 /*yield*/, contact.save()];
-            case 1:
+            case 2:
                 _a.sent();
                 res.send(contact);
                 return [2 /*return*/];
