@@ -36,6 +36,21 @@ export const createContact = async (req: Request, res: Response) => {
     res.send(contact)
 }
 
+export const editContact = async (req: Request, res: Response) => {
+    const contact = await ContactModel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new: true}
+    )
+
+    if (!contact) {
+        res.status(404);
+        throw new Error('Contact not found');
+    }
+
+    res.status(200).json(contact);
+}
+
 export const deleteContact = async (req: Request, res: Response) => {
     const contact = await ContactModel.findById(req.params.id);
 

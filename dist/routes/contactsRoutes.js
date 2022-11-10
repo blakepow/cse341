@@ -6,4 +6,6 @@ var router = express.Router();
 router.get('/', contactsController_1.getAllContacts);
 router.get('/:id', contactsController_1.getContactById);
 router.post('/', contactsController_1.createContact);
+router.put('/:id', contactsController_1.editContact);
+router.delete('/:id', contactsController_1.deleteContact);
 module.exports = router;
