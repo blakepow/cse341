@@ -23,10 +23,8 @@ var contactSchema = new mongoose_1.default.Schema({
         type: String,
         required: [true, 'Please add an email'],
         unique: true,
-        match: [
-            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-            'Please add a valid email'
-        ]
+        trim: true,
+        maxlength: [50, 'Email can not be more than 50 characters']
     },
     favoriteColor: {
         type: String,
