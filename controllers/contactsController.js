@@ -2,11 +2,11 @@ const { ContactModel } = require('../models/contactsModel')
 
 const getAllContacts = async (req, res) => {
     const contacts = await ContactModel.find();
-    res.status(200).json(contacts);
+    res.json(contacts);
 }
 
 const getContactById = async (req, res) => {
-    const contact = await ContactModel.findById(req.params.id);
+    const contact = await ContactModel.findById(req.params.id.toString());
 
     if (!contact) {
         res.status(404);
