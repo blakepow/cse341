@@ -1,11 +1,8 @@
-import express = require('express');
-import {
-    createContact,
-    deleteContact,
-    editContact,
-    getAllContacts,
-    getContactById
-} from '../controllers/contactsController';
+const express = require('express');
+
+const {getContacts, getAllContacts, getContact, createContact, updateContact, deleteContact, getContactById,
+    editContact
+} = require('../controllers/contactsController');
 
 const router = express.Router();
 

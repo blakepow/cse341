@@ -37,12 +37,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteContact = exports.editContact = exports.createContact = exports.getContactById = exports.getAllContacts = void 0;
-var contactsModel_1 = require("../models/contactsModel");
+var contactsModel_js_1 = require("../models/contactsModel.js");
 var getAllContacts = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var contacts;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.find()];
+            case 0: return [4 /*yield*/, contactsModel_js_1.ContactModel.find()];
             case 1:
                 contacts = _a.sent();
                 res.status(200).json(contacts);
@@ -55,7 +55,7 @@ var getContactById = function (req, res) { return __awaiter(void 0, void 0, void
     var contact;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.findById(req.params.id)];
+            case 0: return [4 /*yield*/, contactsModel_js_1.ContactModel.findById(req.params.id)];
             case 1:
                 contact = _a.sent();
                 if (!contact) {
@@ -72,13 +72,13 @@ var createContact = function (req, res) { return __awaiter(void 0, void 0, void 
     var contactExists, contact;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.findOne({ email: req.body.email })];
+            case 0: return [4 /*yield*/, contactsModel_js_1.ContactModel.findOne({ email: req.body.email })];
             case 1:
                 contactExists = _a.sent();
                 if (contactExists) {
                     return [2 /*return*/, res.status(400).send('Contact already exists')];
                 }
-                contact = new contactsModel_1.ContactModel({
+                contact = new contactsModel_js_1.ContactModel({
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     email: req.body.email,
@@ -98,7 +98,7 @@ var editContact = function (req, res) { return __awaiter(void 0, void 0, void 0,
     var contact;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.findByIdAndUpdate(req.params.id, req.body, { new: true })];
+            case 0: return [4 /*yield*/, contactsModel_js_1.ContactModel.findByIdAndUpdate(req.params.id, req.body, { new: true })];
             case 1:
                 contact = _a.sent();
                 if (!contact) {
@@ -115,7 +115,7 @@ var deleteContact = function (req, res) { return __awaiter(void 0, void 0, void 
     var contact;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, contactsModel_1.ContactModel.findById(req.params.id)];
+            case 0: return [4 /*yield*/, contactsModel_js_1.ContactModel.findById(req.params.id)];
             case 1:
                 contact = _a.sent();
                 if (!contact) {

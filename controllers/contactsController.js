@@ -1,13 +1,11 @@
-import {Request, Response} from 'express';
+const { ContactModel } = require('../models/contactsModel')
 
-import {ContactModel} from '../models/contactsModel';
-
-export const getAllContacts = async (req: Request, res: Response) => {
+const getAllContacts = async (req, res) => {
     const contacts = await ContactModel.find();
     res.status(200).json(contacts);
 }
 
-export const getContactById = async (req: Request, res: Response) => {
+const getContactById = async (req, res) => {
     const contact = await ContactModel.findById(req.params.id);
 
     if (!contact) {
@@ -18,7 +16,7 @@ export const getContactById = async (req: Request, res: Response) => {
     res.status(200).json(contact);
 }
 
-export const createContact = async (req: Request, res: Response) => {
+const createContact = async (req, res) => {
     const contactExists = await ContactModel.findOne({email: req.body.email});
 
     if (contactExists) {
@@ -36,7 +34,7 @@ export const createContact = async (req: Request, res: Response) => {
     res.send(contact)
 }
 
-export const editContact = async (req: Request, res: Response) => {
+const editContact = async (req, res) => {
     const contact = await ContactModel.findByIdAndUpdate(
         req.params.id,
         req.body,
@@ -51,7 +49,7 @@ export const editContact = async (req: Request, res: Response) => {
     res.status(200).json(contact);
 }
 
-export const deleteContact = async (req: Request, res: Response) => {
+const deleteContact = async (req, res) => {
     const contact = await ContactModel.findById(req.params.id);
 
     if (!contact) {
@@ -62,4 +60,12 @@ export const deleteContact = async (req: Request, res: Response) => {
     await contact.remove();
     res.send('Contact removed');
 
+}
+
+module.exports = {
+    getAllContacts,
+    getContactById,
+    createContact,
+    editContact,
+    deleteContact
 }

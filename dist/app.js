@@ -9,6 +9,11 @@ var port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', require('./routes/contactsRoutes'));
+// const outputFile = "./swagger_output.json";
+//
+// const endpointsFiles = ["./routes/contactsRoutes.js"];
+//
+// swaggerAutogen(outputFile, endpointsFiles);
 app.listen(port, function () {
     console.log("Server is running on port " + port);
 });
