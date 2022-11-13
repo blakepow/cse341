@@ -17,7 +17,4 @@ router.put('/:id', editContact);
 
 router.delete('/:id', deleteContact)
 
-//active swagger gui route
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 module.exports = router;

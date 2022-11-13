@@ -18,7 +18,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.get('/favicon.ico', (req, res) => res.status(204))
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(swaggerDocument));
 app.use('/', require('./routes/contactsRoutes'));
+
 
 // const outputFile = "./swagger_output.json";
 //
