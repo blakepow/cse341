@@ -1,9 +1,9 @@
 
 const dotenv = require('dotenv').config()
 //
-// const swaggerAutogen = require('swagger-autogen')()
-// const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger_output.json');
+const swaggerAutogen = require('swagger-autogen')()
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger_output.json');
 
 const {connectDB} = require('./config/db')
 const express = require('express');
